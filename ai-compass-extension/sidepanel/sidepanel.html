@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>AI Compass</title>
+    <link rel="stylesheet" href="sidepanel.css">
+  </head>
+  <body>
+    <main class="shell">
+      <header class="app-header">
+        <div class="brand-lockup" aria-label="AI Compass">
+          <img class="brand-logo" src="../icons/AI-compass-logo-2.png" alt="">
+          <span>AI Compass</span>
+        </div>
+        <div class="header-actions">
+          <button id="settings-button" class="ghost-button" type="button">设置</button>
+          <span class="status-dot" aria-hidden="true"></span>
+        </div>
+      </header>
+
+      <section class="session-strip" aria-labelledby="session-heading">
+        <div class="session-summary">
+          <span id="site-name" class="site-pill">-</span>
+          <div class="session-copy">
+            <h2 id="session-heading">当前会话</h2>
+            <p id="session-summary-title">等待支持站点</p>
+          </div>
+        </div>
+        <button
+          id="toggle-session-details"
+          class="ghost-button"
+          type="button"
+          aria-expanded="false"
+          aria-controls="session-details"
+        >编辑</button>
+      </section>
+
+      <section id="session-details" class="session-details" hidden>
+        <label class="field-label compact-label" for="session-title-input">会话标题</label>
+        <div class="title-row">
+          <input id="session-title-input" class="text-input" type="text" autocomplete="off">
+          <button id="save-title-button" class="icon-button" type="button" title="保存标题">保存</button>
+        </div>
+        <dl class="meta-grid compact-meta">
+          <div>
+            <dt>页面标题</dt>
+            <dd id="source-title">-</dd>
+          </div>
+        </dl>
+      </section>
+
+      <p id="status-message" class="status-message" role="status" aria-live="polite"></p>
+
+      <section id="onboarding-panel" class="onboarding-panel" hidden>
+        <h2>欢迎使用 AI Compass</h2>
+        <p>AI Compass 是你的 AI 对话指南针，用来在长对话中收集、整理和沉淀关键上下文。</p>
+        <ol>
+          <li>在 AI 回复中选中内容。</li>
+          <li>点击“收集到指南针”。</li>
+          <li>归类为目标、结论、问题、待办或摘录。</li>
+          <li>最后复制或导出为 Markdown。</li>
+        </ol>
+        <button id="dismiss-onboarding-button" class="primary-button" type="button">开始使用</button>
+      </section>
+
+      <section id="empty-state" class="empty-state" hidden>
+        <h2>还没有收集内容。</h2>
+        <p>你可以在 AI Chat 页面中选中文本，点击“收集到指南针”，或在这里手动记录当前思路。</p>
+      </section>
+
+      <section id="focus-root" class="focus-root" hidden aria-label="当前重点"></section>
+
+      <nav id="category-nav" class="category-nav" aria-label="分类筛选"></nav>
+
+      <section id="sections-root" class="sections-root" aria-label="收集内容列表"></section>
+
+      <details class="add-panel">
+        <summary id="add-heading">新增记录</summary>
+        <form id="add-item-form">
+          <label class="field-label" for="add-type">分类</label>
+          <select id="add-type" class="select-input"></select>
+
+          <label class="field-label" for="add-content">内容</label>
+          <textarea id="add-content" class="textarea-input" rows="4"></textarea>
+          <p class="paste-hint">可在新增记录区域粘贴图片，图片会作为附件保存。</p>
+          <div id="add-attachment-list" class="attachment-list" hidden></div>
+
+          <label class="field-label" for="add-note">备注</label>
+          <textarea id="add-note" class="textarea-input" rows="2"></textarea>
+
+          <button id="add-item-button" class="primary-button full-width" type="submit">保存记录</button>
+        </form>
+      </details>
+
+      <section id="settings-view" class="settings-view" hidden>
+        <div class="settings-header">
+          <div>
+            <p class="eyebrow">Settings</p>
+            <h2>设置</h2>
+          </div>
+          <button id="back-to-main-button" class="ghost-button" type="button">返回</button>
+        </div>
+
+        <section class="settings-section">
+          <h3>基础设置</h3>
+          <label class="field-label" for="default-type-setting">手动新增默认分类</label>
+          <select id="default-type-setting" class="select-input"></select>
+
+          <label class="checkbox-row">
+            <input id="show-locate-setting" type="checkbox">
+            <span>显示定位 Beta</span>
+          </label>
+
+          <label class="checkbox-row">
+            <input id="keep-rich-text-setting" type="checkbox">
+            <span>默认保留富文本</span>
+          </label>
+
+          <button id="show-onboarding-button" class="secondary-button" type="button">重新查看首次引导</button>
+        </section>
+
+        <section class="settings-section">
+          <h3>数据与隐私</h3>
+          <p class="privacy-copy">
+            AI Compass 只保存你主动收藏的内容。所有数据默认保存在 Chrome 插件本地存储中，不上传服务器，不调用远程 API。
+          </p>
+          <dl class="settings-stats">
+            <div>
+              <dt>会话数</dt>
+              <dd id="settings-session-count">0</dd>
+            </div>
+            <div>
+              <dt>记录数</dt>
+              <dd id="settings-item-count">0</dd>
+            </div>
+            <div>
+              <dt>schemaVersion</dt>
+              <dd id="settings-schema-version">-</dd>
+            </div>
+            <div>
+              <dt>appVersion</dt>
+              <dd id="settings-app-version">-</dd>
+            </div>
+          </dl>
+          <button id="copy-markdown-button" class="secondary-button" type="button">复制当前会话 Markdown</button>
+          <button id="export-markdown-button" class="secondary-button" type="button">导出当前会话 Markdown</button>
+          <button id="export-backup-button" class="secondary-button" type="button">导出全部备份</button>
+          <button id="settings-clear-all-button" class="danger-button" type="button">清空全部本地数据</button>
+        </section>
+
+        <section class="settings-section">
+          <h3>关于</h3>
+          <p>AI Compass 是辅助人的 AI Chat 上下文管理第二大脑，专注本地收藏、分类管理和 Markdown 沉淀。</p>
+        </section>
+      </section>
+
+      <div id="image-viewer" class="image-viewer" hidden role="dialog" aria-modal="true" aria-label="图片附件预览">
+        <div class="image-viewer-panel">
+          <div class="image-viewer-header">
+            <span id="image-viewer-title">图片附件</span>
+            <button id="image-viewer-close" class="ghost-button" type="button">关闭</button>
+          </div>
+          <img id="image-viewer-image" alt="">
+        </div>
+      </div>
+    </main>
+
+    <script src="../utils/constants.js"></script>
+    <script src="../utils/siteAdapters.js"></script>
+    <script src="../utils/session.js"></script>
+    <script src="../utils/similarity.js"></script>
+    <script src="../utils/attachments.js"></script>
+    <script src="../utils/storage.js"></script>
+    <script src="../utils/markdown.js"></script>
+    <script src="../utils/preview.js"></script>
+    <script src="sidepanel.js"></script>
+  </body>
+</html>

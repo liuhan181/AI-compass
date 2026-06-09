@@ -1,0 +1,178 @@
+.ai-compass-floating-button,
+.ai-compass-collect-button {
+  align-items: center;
+  appearance: none;
+  background: #162018;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 999px;
+  box-shadow: 0 8px 26px rgba(0, 0, 0, 0.2);
+  box-sizing: border-box;
+  color: #f7f3e8;
+  cursor: pointer;
+  display: inline-flex;
+  font: 600 14px/1 -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  justify-content: center;
+  letter-spacing: 0;
+  margin: 0;
+  min-height: 40px;
+  padding: 0 16px;
+  position: fixed;
+  transition: transform 160ms ease, background 160ms ease, box-shadow 160ms ease;
+  user-select: none;
+  white-space: nowrap;
+  z-index: 2147483646;
+}
+
+.ai-compass-floating-button {
+  min-height: 44px;
+}
+
+.ai-compass-floating-button:hover,
+.ai-compass-collect-button:hover {
+  background: #223229;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.24);
+  transform: translateY(-1px);
+}
+
+.ai-compass-floating-button:active,
+.ai-compass-collect-button:active {
+  transform: translateY(0);
+}
+
+.ai-compass-collect-button {
+  background: #f0b84f;
+  border-color: rgba(54, 37, 0, 0.12);
+  color: #1f1808;
+  min-width: 136px;
+}
+
+.ai-compass-collect-button:disabled {
+  cursor: wait;
+  opacity: 0.72;
+}
+
+.ai-compass-toast {
+  background: #172018;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 8px;
+  bottom: 32px;
+  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.25);
+  color: #f7f3e8;
+  font: 600 13px/1.4 -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  opacity: 0;
+  padding: 10px 14px;
+  pointer-events: none;
+  position: fixed;
+  right: 24px;
+  transform: translateY(10px);
+  transition: opacity 160ms ease, transform 160ms ease;
+  z-index: 2147483647;
+}
+
+.ai-compass-toast.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.ai-compass-toast[data-tone="success"] {
+  background: #123d2c;
+}
+
+.ai-compass-toast[data-tone="error"] {
+  background: #4d1e1a;
+}
+
+.ai-compass-similar-card {
+  background: #fffaf0;
+  border: 1px solid rgba(22, 32, 24, 0.16);
+  border-radius: 10px;
+  bottom: 24px;
+  box-shadow: 0 18px 48px rgba(22, 32, 24, 0.18);
+  box-sizing: border-box;
+  color: #162018;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  max-height: min(560px, calc(100vh - 48px));
+  overflow: auto;
+  padding: 16px;
+  position: fixed;
+  right: 24px;
+  width: min(420px, calc(100vw - 48px));
+  z-index: 2147483647;
+}
+
+.ai-compass-similar-card h2 {
+  font-size: 18px;
+  line-height: 1.25;
+  margin: 0 0 6px;
+}
+
+.ai-compass-similar-card p {
+  font-size: 13px;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.ai-compass-similar-block {
+  background: #fffdf8;
+  border: 1px solid rgba(22, 32, 24, 0.12);
+  border-radius: 8px;
+  margin-top: 10px;
+  padding: 10px;
+}
+
+.ai-compass-similar-block strong {
+  display: block;
+  font-size: 12px;
+  margin-bottom: 4px;
+}
+
+.ai-compass-similar-block p {
+  max-height: 104px;
+  overflow: auto;
+  white-space: pre-wrap;
+}
+
+.ai-compass-similar-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.ai-compass-similar-actions button {
+  background: #f0b84f;
+  border: 0;
+  border-radius: 999px;
+  color: #201707;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 800;
+  min-height: 34px;
+  padding: 7px 10px;
+}
+
+.ai-compass-similar-actions .ai-compass-similar-cancel {
+  background: #efe6d4;
+  color: #162018;
+}
+
+.ai-compass-source-highlight {
+  animation: ai-compass-source-pulse 1500ms ease-in-out 2;
+  outline: 3px solid #f0b84f !important;
+  outline-offset: 4px !important;
+  scroll-margin: 96px;
+}
+
+@keyframes ai-compass-source-pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(240, 184, 79, 0.5);
+  }
+
+  70% {
+    box-shadow: 0 0 0 12px rgba(240, 184, 79, 0);
+  }
+
+  100% {
+    box-shadow: 0 0 0 0 rgba(240, 184, 79, 0);
+  }
+}

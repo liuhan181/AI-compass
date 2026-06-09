@@ -1,0 +1,66 @@
+{
+  "manifest_version": 3,
+  "name": "AI Compass",
+  "version": "0.6.2",
+  "description": "A local AI chat context compass for stable collection, management, and Markdown export.",
+  "minimum_chrome_version": "114",
+  "permissions": [
+    "storage",
+    "sidePanel",
+    "downloads",
+    "activeTab",
+    "tabs"
+  ],
+  "host_permissions": [
+    "https://chatgpt.com/*",
+    "https://www.doubao.com/*",
+    "https://doubao.com/*",
+    "https://claude.ai/*",
+    "https://gemini.google.com/*",
+    "https://kimi.moonshot.cn/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_title": "Open AI Compass",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "side_panel": {
+    "default_path": "sidepanel/sidepanel.html"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://chatgpt.com/*",
+        "https://www.doubao.com/*",
+        "https://doubao.com/*",
+        "https://claude.ai/*",
+        "https://gemini.google.com/*",
+        "https://kimi.moonshot.cn/*"
+      ],
+      "css": [
+        "content/content.css"
+      ],
+      "js": [
+        "utils/constants.js",
+        "utils/siteAdapters.js",
+        "utils/session.js",
+        "utils/preview.js",
+        "utils/anchors.js",
+        "utils/conversationIndex.js",
+        "content/content.js"
+      ],
+      "run_at": "document_idle"
+    }
+  ],
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  }
+}
